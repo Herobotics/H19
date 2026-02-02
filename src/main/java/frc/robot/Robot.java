@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -17,6 +18,7 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
  * this project, you must also update the manifest file in the resource directory.
  */
 public class Robot extends TimedRobot {
+  private final SwerveSubsystem swerve_system = new SwerveSubsystem();
   private final PWMSparkMax m_leftDrive = new PWMSparkMax(0);
   private final PWMSparkMax m_rightDrive = new PWMSparkMax(1);
   private final DifferentialDrive m_robotDrive =
@@ -60,7 +62,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    m_robotDrive.arcadeDrive(-m_controller.getLeftY(), -m_controller.getRightX());
+    swerve_system.drive(-m_controller.getLeftY(), -m_controller.getLeftX(), m_controller.getRightX());
+    // m_robotDrive.arcadeDrive(-m_controller.getLeftY(), -m_controller.getRight());
   }
 
   /** This function is called once each time the robot enters test mode. */
