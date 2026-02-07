@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import swervelib.SwerveDrive;
 import swervelib.math.SwerveMath;
 import swervelib.parser.SwerveParser;
+import swervelib.telemetry.SwerveDriveTelemetry;
+import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 
 public class SwerveSubsystem {
  /**
@@ -25,17 +27,22 @@ public class SwerveSubsystem {
 public SwerveSubsystem(){
   try
     {
+      SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
       File directory = new File(Filesystem.getDeployDirectory(),"swerve");
       swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumSpeed);
+      System.out.println(swerveDrive.swerveDriveConfiguration.toString());
+      swerveDrive.setHeadingCorrection(false);
+      swerveDrive.setCosineCompensator(false);
     } catch (Exception e)
     {
       throw new RuntimeException(e);
     }
+    
 }
 
 public void drive(
       double xSpeed, double ySpeed, double rot) {
-        ChassisSpeeds cs = new ChassisSpeeds(ySpeed, ySpeed, rot);
+        ChassisSpeeds cs = new ChassisSpeeds(xSpeed, ySpeed, rot);
     swerveDrive.drive(cs);
       }
 }
