@@ -43,6 +43,6 @@ public SwerveSubsystem(){
 public void drive(
       double xSpeed, double ySpeed, double rot) {
         ChassisSpeeds cs = new ChassisSpeeds(xSpeed, ySpeed, rot);
-    swerveDrive.drive(cs);
+    swerveDrive.driveFieldOriented(cs);
       }
 }
