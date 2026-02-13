@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
+import frc.robot.subsystems.swervedrive.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import swervelib.SwerveInputStream;
 
@@ -22,7 +23,7 @@ public class RobotContainer {
   private final CommandXboxController driverXbox =
       new CommandXboxController(0); // Port 0
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
-
+  private final ShooterSubsystem shooter = new ShooterSubsystem();
 
 //     // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
 //   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -58,6 +59,10 @@ public class RobotContainer {
     Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     
+    // Left Dpad control for shooter
+    driverXbox.povUp().onTrue(shooter.AimUp());
+    driverXbox.povDown().onTrue(shooter.AimDown());
+
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     // new Trigger(m_exampleSubsystem::exampleCondition)
     //     .onTrue(new ExampleCommand(m_exampleSubsystem));
