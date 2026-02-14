@@ -37,8 +37,8 @@ public SwerveSubsystem(){
       File directory = new File(Filesystem.getDeployDirectory(),"swerve");
       swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumSpeed, startingPose);
       System.out.println(swerveDrive.swerveDriveConfiguration.toString());
-      swerveDrive.setHeadingCorrection(false);
-      swerveDrive.setCosineCompensator(false);
+      // swerveDrive.setHeadingCorrection(false);
+      // swerveDrive.setCosineCompensator(false);
 
     } catch (Exception e)
     {
