@@ -42,6 +42,21 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
+  /** Called once? */
+  @Override
+  public void robotInit() {
+    // Mecessary because our limelights are 3A
+    // Call once in robotInit()
+    LimelightHelpers.setupPortForwardingUSB(0);  // First camera
+    LimelightHelpers.setupPortForwardingUSB(1);  // Second camera (if applicable)
+
+    // Access via:
+    // USB Index 0: http://(robotIP):5801 (UI), http://(robotIP):5800 (stream)
+    // USB Index 1: http://(robotIP):5811 (UI), http://(robotIP):5810 (stream)
+  }
+
+
+
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}

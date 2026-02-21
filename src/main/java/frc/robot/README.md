@@ -11,23 +11,26 @@ Contains important notes for contributing to this codebase.
 5. Added Shooter subsystem
 
 Necessary TODOs:
-[] Design intake and shooter controls (Devonair)
-[] Add EveryBot code for controlling the fuel ([subsystem code](https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/blob/main/src/main/java/frc/robot/subsystems/CANFuelSubsystem.java))/[command code](https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/tree/main/src/main/java/frc/robot/commands) & modify it for our usages
-[] Add AprilTag tracking to our swerve drive
-[] Hook up Limelight camera and give it the right software
-[] Upload a field map to our Limelight
+- [ ] Design intake and shooter controls (Devonair)
+- [ ] Add EveryBot code for controlling the fuel ([subsystem code]- (https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/blob/main/src/main/java/frc/robot/subsystems/CANFuelSubsystem.java))/[command code](https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/tree/main/src/main/java/frc/robot/commands) & modify it for our usages
+- [x] Add AprilTag tracking to our swerve drive
+- [ ] Hook up Limelight camera and give it the right software
+- [ ] Upload a field map to our Limelight
 
 Recommended TODOs:
-[] Verify the robot can accurately drive 3m straight and turn 360 degrees. If broken, tune PID.
-[] Make some sort of PathPlanner Autonomous path
-[] Add an "auto-align target" button
+- [ ] Add telemetry data about the AprilTags to a dashboard
+- [ ] Verify the robot can accurately drive 3m straight and turn 360 degrees. If broken, tune PID.
+- [ ] Make some sort of PathPlanner Autonomous path
+- [ ] Add an "auto-align target" button
 
 In case of broken, TODOs:
-[] Calibrate the gyroscope. We did this last year, was it in Phoenix Tuner X?
-[] Add a "reset gyroscope" button
-[] Update Limelight position relative to robot
-[] Calibrate/characterize the robot's PID loop with SysId
-[] Limit which AprilTags we are looking at to just the centered ones.
+- [ ] Calibrate the gyroscope. We did this last year, was it in Phoenix Tuner X?
+- [ ] Add a "reset gyroscope" button
+- [ ] Update Limelight position relative to robot
+- [ ] Calibrate/characterize the robot's PID loop with SysId
+- [ ] Limit which AprilTags we are looking at to just the centered ones.
+- [ ] Check that our odometry has an always-blue-corner origin, which is compatible with PathPlanner
+- [ ] Add the rest of the [Limelight MegaTag calibration steps](https://docs.limelightvision.io/docs/docs-limelight/apis/limelight-lib#6-special-apriltag-functionality)
 
 ## More about Command Based Programming
 
