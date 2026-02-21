@@ -81,7 +81,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(drivebase);
-    // TODO move autonomous code here
+    // return Autos.exampleAuto(drivebase);
+    return Autos.pathPlannedAuto();
   }
 }
