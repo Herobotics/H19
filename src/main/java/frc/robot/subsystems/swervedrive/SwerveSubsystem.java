@@ -40,7 +40,7 @@ public class SwerveSubsystem extends SubsystemBase {
     /**
    * Enable vision odometry updates while driving.
    */
-  private final boolean     useVisionCalibration = false;
+  private final boolean     useVisionCalibration = true;
   
   private final double maximumSpeed = Units.feetToMeters(0.5);
 
@@ -138,7 +138,7 @@ public Command driveFieldOriented(SwerveInputStream driveAngularVelocity) {
     boolean doRejectUpdate = false;
     
     {
-      LimelightHelpers.SetRobotOrientation("limelight", swerveDrive.swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
+      LimelightHelpers.SetRobotOrientation("limelight-benji", swerveDrive.swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
       LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
       // We don't drive our robot like this
       // if(Math.abs(m_gyro.getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
@@ -152,9 +152,10 @@ public Command driveFieldOriented(SwerveInputStream driveAngularVelocity) {
       if(!doRejectUpdate)
       {
         swerveDrive.swerveDrivePoseEstimator.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
-        swerveDrive.swerveDrivePoseEstimator.addVisionMeasurement(
-            mt2.pose,
-            mt2.timestampSeconds);
+        System.err.println("Pose estimate X: " + mt2.pose.getMeasureX() + " Y:" + mt2.pose.getMeasureY());
+        // swerveDrive.swerveDrivePoseEstimator.addVisionMeasurement(
+        //     mt2.pose,
+        //     mt2.timestampSeconds);
       }
     }
   }
