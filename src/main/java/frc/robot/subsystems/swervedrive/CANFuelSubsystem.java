@@ -10,6 +10,7 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 
@@ -21,15 +22,15 @@ import frc.robot.Constants;
 import static frc.robot.Constants.FuelConstants.*;
 
 public class CANFuelSubsystem extends SubsystemBase {
-  private final SparkMax LeftIntakeLauncher;
-  private final SparkMax RightIntakeLauncher;
+  private final TalonFX LeftIntakeLauncher;
+  private final TalonFX RightIntakeLauncher;
   private final SparkMax Indexer;
 
   /** Creates a new CANBallSubsystem. */
   public CANFuelSubsystem() {
     // create brushed motors for each of the motors on the launcher mechanism
-    LeftIntakeLauncher = new SparkMax(LEFT_INTAKE_LAUNCHER_MOTOR_ID, MotorType.kBrushless);
-    RightIntakeLauncher = new SparkMax(RIGHT_INTAKE_LAUNCHER_MOTOR_ID, MotorType.kBrushless);
+    LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
+    RightIntakeLauncher = new TalonFX (RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
     Indexer = new SparkMax(INDEXER_MOTOR_ID, MotorType.kBrushed);
 
     // create the configuration for the feeder roller, set a current limit and apply
@@ -41,14 +42,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     // create the configuration for the launcher roller, set a current limit, set
     // the motor to inverted so that positive values are used for both intaking and
     // launching, and apply the config to the controller
-    SparkMaxConfig launcherConfig = new SparkMaxConfig();
-
-    launcherConfig.smartCurrentLimit(LAUNCHER_MOTOR_CURRENT_LIMIT);
-    launcherConfig.voltageCompensation(12);
-    launcherConfig.idleMode(IdleMode.kCoast);
-    RightIntakeLauncher.configure(launcherConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    launcherConfig.inverted(true);
-    LeftIntakeLauncher.configure(launcherConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    
 
     // put default values for various fuel operations onto the dashboard
     // all commands using this subsystem pull values from the dashbaord to allow
@@ -83,4 +77,4 @@ public class CANFuelSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-}
+} 
