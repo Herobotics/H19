@@ -19,6 +19,7 @@ import com.revrobotics.spark.config.SparkFlexConfig;
  * wherever the constants are needed, to reduce verbosity. 
  */
 public final class Constants {
+  public static final String limelight_name = "limelight-benji";
 
   public static final class DriveConstants {
     // Motor controller IDs for drivetrain motors
