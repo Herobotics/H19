@@ -45,15 +45,15 @@ public class RobotContainer {
                                                             .deadband(0.05)
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true);
-  private final SendableChooser<Command> autoChooser;
+  // private final SendableChooser<Command> autoChooser;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Build an auto chooser. This will use Commands.none() as the default option.
-    autoChooser = AutoBuilder.buildAutoChooser();
+    // autoChooser = AutoBuilder.buildAutoChooser();
     // Another option that allows you to specify the default auto by its name
     // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
-    SmartDashboard.putData("Auto Chooser", autoChooser);
+    // SmartDashboard.putData("Auto Chooser", autoChooser);
 
     // Configure the trigger bindings
     configureBindings();
@@ -100,7 +100,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     // return Autos.exampleAuto(drivebase);
-    // return Autos.pathPlannedAuto();
-    return autoChooser.getSelected();
+    return Autos.pathPlannedAuto();
+    // return autoChooser.getSelected();
   }
 }

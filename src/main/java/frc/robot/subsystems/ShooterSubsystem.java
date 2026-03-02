@@ -1,40 +1,40 @@
-package frc.robot.subsystems;
+// package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
+// import com.ctre.phoenix6.hardware.TalonFX;
 
-import edu.wpi.first.units.measure.Angle;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+// import edu.wpi.first.units.measure.Angle;
+// import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.Commands;
+// import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ShooterSubsystem extends SubsystemBase {
-    private final TalonFX aimingMotor = new TalonFX(5);
-    // private static final Angle maxAngle = Angle(0.5);
+// public class ShooterSubsystem extends SubsystemBase {
+//     private final TalonFX aimingMotor = new TalonFX(5);
+//     // private static final Angle maxAngle = Angle(0.5);
 
-    public ShooterSubsystem() {
+//     public ShooterSubsystem() {
         
-    }
+//     }
 
-    // Aim shooter -- right thumb stick
-    // TBD whether is part of the subsystem or not
+//     // Aim shooter -- right thumb stick
+//     // TBD whether is part of the subsystem or not
 
-    // Firing shooter
+//     // Firing shooter
 
-    // Stop shooter?
+//     // Stop shooter?
 
-    // Spinning up the wheels
+//     // Spinning up the wheels
 
-    // Aiming the shooter
-    public Command AimUp() {
-        // return run(() -> {
-        //     // Angle desiredAngle = 
-        //     // aimingMotor.setPosition(aimingMotor.getPosition().getValue());
-        // });
-        return Commands.none();
-    }
+//     // Aiming the shooter
+//     public Command AimUp() {
+//         // return run(() -> {
+//         //     // Angle desiredAngle = 
+//         //     // aimingMotor.setPosition(aimingMotor.getPosition().getValue());
+//         // });
+//         return Commands.none();
+//     }
     
-    public Command AimDown() {
-        return Commands.none();
-    }
+//     public Command AimDown() {
+//         return Commands.none();
+//     }
     
-}
+// }
