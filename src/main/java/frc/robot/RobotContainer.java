@@ -6,7 +6,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.Eject;
+import frc.robot.commands.Intake;
+import frc.robot.commands.Launch;
+import frc.robot.commands.SpinUp;
+import frc.robot.subsystems.CANFuelSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import swervelib.SwerveInputStream;
 
@@ -23,8 +27,10 @@ public class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController driverXbox =
       new CommandXboxController(0); // Port 0
+  private final CommandXboxController operatorXbox =
+      new CommandXboxController(1); // Port 1
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
-  private final ShooterSubsystem shooter = new ShooterSubsystem();
+  private final CANFuelSubsystem shooter = new CANFuelSubsystem();
 
 //     // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
 //   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -51,8 +57,6 @@ public class RobotContainer {
 
     // Configure the trigger bindings
     configureBindings();
-
-
   }
 
   /**
@@ -69,14 +73,19 @@ public class RobotContainer {
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     
     // Left Dpad control for shooter
-    driverXbox.povUp().onTrue(shooter.AimUp());
-    driverXbox.povDown().onTrue(shooter.AimDown());
+    operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
+    operatorXbox.leftTrigger().whileTrue(new SpinUp(shooter));
+    operatorXbox.a().whileTrue(new Intake(shooter));
+    operatorXbox.b().whileTrue(new Eject(shooter)); 
+    // driverXbox.povUp(RightThumbstick).onTrue(shooter.AimUp(RightBumper));
+    // driverXbox.povDown(RightThumbstick).onTrue(shooter.AimDown(LeftBumper));
 
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+    // Schedule `ExampleCommand` when `exampleCondition
+  //  changes to `true`
     // new Trigger(m_exampleSubsystem::exampleCondition)
     //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+    // Schedule `exampleMethodCommand` when the Xbox controller's B button is being pressed,
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   
