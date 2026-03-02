@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.CANFuelSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import swervelib.SwerveInputStream;
 
@@ -24,7 +24,7 @@ public class RobotContainer {
   private final CommandXboxController driverXbox =
       new CommandXboxController(0); // Port 0
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
-  private final ShooterSubsystem shooter = new ShooterSubsystem();
+  private final CANFuelSubsystem mechanism = new CANFuelSubsystem();
 
 //     // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
 //   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -39,20 +39,18 @@ public class RobotContainer {
                                                             .deadband(0.05)
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true);
-  private final SendableChooser<Command> autoChooser;
+  // private final SendableChooser<Command> autoChooser;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Build an auto chooser. This will use Commands.none() as the default option.
-    autoChooser = AutoBuilder.buildAutoChooser();
+    // autoChooser = AutoBuilder.buildAutoChooser();
     // Another option that allows you to specify the default auto by its name
     // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
-    SmartDashboard.putData("Auto Chooser", autoChooser);
+    // SmartDashboard.putData("Auto Chooser", autoChooser);
 
     // Configure the trigger bindings
     configureBindings();
-
-
   }
 
   /**
@@ -69,8 +67,8 @@ public class RobotContainer {
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     
     // Left Dpad control for shooter
-    driverXbox.povUp().onTrue(shooter.AimUp());
-    driverXbox.povDown().onTrue(shooter.AimDown());
+    // driverXbox.povUp().onTrue(shooter.AimUp());
+    // driverXbox.povDown().onTrue(shooter.AimDown());
 
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     // new Trigger(m_exampleSubsystem::exampleCondition)
@@ -91,7 +89,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     // return Autos.exampleAuto(drivebase);
-    // return Autos.pathPlannedAuto();
-    return autoChooser.getSelected();
+    return Autos.pathPlannedAuto();
+    // return autoChooser.getSelected();
   }
 }
