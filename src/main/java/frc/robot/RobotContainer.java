@@ -71,12 +71,13 @@ public class RobotContainer {
   private void configureBindings() {
     Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+    driverXbox.y().whileTrue(drivebase.aimAtTarget());
     
     // Left Dpad control for shooter
-    operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
-    operatorXbox.leftTrigger().whileTrue(new SpinUp(shooter));
-    operatorXbox.a().whileTrue(new Intake(shooter));
-    operatorXbox.b().whileTrue(new Eject(shooter)); 
+    driverXbox.rightTrigger().whileTrue(new Launch(shooter));
+    driverXbox.leftTrigger().whileTrue(new SpinUp(shooter));
+    driverXbox.a().whileTrue(new Intake(shooter));
+    driverXbox.b().whileTrue(new Eject(shooter));
     // driverXbox.povUp(RightThumbstick).onTrue(shooter.AimUp(RightBumper));
     // driverXbox.povDown(RightThumbstick).onTrue(shooter.AimDown(LeftBumper));
 

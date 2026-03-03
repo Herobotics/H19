@@ -21,27 +21,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.FuelConstants.*;
 
 public class CANFuelSubsystem extends SubsystemBase {
-  // private final TalonFX LeftIntakeLauncher;
-  // private final TalonFX RightIntakeLauncher;
-  // private final SparkMax Indexer;
+  private final TalonFX LeftIntakeLauncher;
+  private final TalonFX RightIntakeLauncher;
+  private final SparkMax Indexer;
 
   /** Creates a new CANBallSubsystem. */
   public CANFuelSubsystem() {
-    // // create brushed motors for each of the motors on the launcher mechanism
-    // LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
-    // RightIntakeLauncher = new TalonFX (RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
-    // Indexer = new SparkMax(INDEXER_MOTOR_ID, MotorType.kBrushed);
+    // // create motors for each of the motors on the launcher mechanism
+    LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
+    RightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
+    Indexer = new SparkMax(INDEXER_MOTOR_ID, MotorType.kBrushed);
 
     // // create the configuration for the feeder roller, set a current limit and apply
     // // the config to the controller
-    // SparkMaxConfig feederConfig = new SparkMaxConfig();
-    // feederConfig.smartCurrentLimit(INDEXER_MOTOR_CURRENT_LIMIT);
-    // Indexer.configure(feederConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-    // create the configuration for the launcher roller, set a current limit, set
-    // the motor to inverted so that positive values are used for both intaking and
-    // launching, and apply the config to the controller
-    
+    SparkMaxConfig feederConfig = new SparkMaxConfig();
+    feederConfig.smartCurrentLimit(INDEXER_MOTOR_CURRENT_LIMIT);
 
     // put default values for various fuel operations onto the dashboard
     // all commands using this subsystem pull values from the dashbaord to allow
@@ -56,20 +50,20 @@ public class CANFuelSubsystem extends SubsystemBase {
 
   // A method to set the voltage of the intake roller
   public void setIntakeLauncherRoller(double power) {
-    // LeftIntakeLauncher.set(power);
-    // RightIntakeLauncher.set(power); // positive for shooting
+    LeftIntakeLauncher.set(power);
+    RightIntakeLauncher.set(-1.0 * power); // negative for clockwise
   }
 
   // A method to set the voltage of the intake roller
   public void setFeederRoller(double power) {
-    // Indexer.set(power); // positive for shooting
+    Indexer.set(power); // positive for shooting
   }
 
   // A method to stop the rollers
   public void stop() {
-    // Indexer.set(0);
-    // LeftIntakeLauncher.set(0);
-    // RightIntakeLauncher.set(0);
+    Indexer.set(0);
+    LeftIntakeLauncher.set(0);
+    RightIntakeLauncher.set(0);
   }
 
   @Override
