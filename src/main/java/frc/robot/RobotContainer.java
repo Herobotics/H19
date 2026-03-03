@@ -72,6 +72,7 @@ public class RobotContainer {
     Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     driverXbox.y().whileTrue(drivebase.aimAtTarget());
+    driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
     
     // Left Dpad control for shooter
     driverXbox.rightTrigger().whileTrue(new Launch(shooter));

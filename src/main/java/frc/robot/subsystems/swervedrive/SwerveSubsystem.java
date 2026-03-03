@@ -45,7 +45,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private final boolean     useVisionCalibration = true;
   
   // private final double maximumSpeed = Units.feetToMeters(0.5);
-  private final double maximumSpeed = 0.1;
+  private final double maximumSpeed = 0.3;  // could be meters per second or % of max
 
 public SwerveSubsystem(){
   try
@@ -284,10 +284,31 @@ public Command driveFieldOriented(SwerveInputStream driveAngularVelocity) {
       if (LimelightHelpers.getTV(Constants.limelight_name)) {
         // add check of whether there are any targets
         final double rot_limelight = limelight_aim_proportional();
-        final double forward_limelight = limelight_range_proportional();
-        final Translation2d movement = new Translation2d(forward_limelight, 0);
+        final Translation2d movement = new Translation2d(0, 0);
         // consider driving in open loop for this
         swerveDrive.drive(movement, rot_limelight, false, false);
+      } else {
+        System.out.println("Cannot see a target");
+      }
+
+
+    });
+  }
+
+    /** Aim the robot at the target AprilTag.
+   *
+   * @return A {@link Command} which will run the alignment.
+   */
+  public Command properDistanceFromTarget()
+  {
+    return run(() -> {
+      // Only run this if we can see a target
+      if (LimelightHelpers.getTV(Constants.limelight_name)) {
+        // add check of whether there are any targets
+        final double forward_limelight = limelight_range_proportional();
+        final Translation2d movement = new Translation2d(-1.0 * forward_limelight, 0);
+        // consider driving in open loop for this
+        swerveDrive.drive(movement, 0, false, false);
       } else {
         System.out.println("Cannot see a target");
       }
