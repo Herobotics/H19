@@ -10,6 +10,7 @@ import frc.robot.commands.Eject;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Launch;
 import frc.robot.commands.SpinUp;
+import frc.robot.commands.Stop;
 import frc.robot.subsystems.CANFuelSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import swervelib.SwerveInputStream;
@@ -73,12 +74,14 @@ public class RobotContainer {
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     driverXbox.y().whileTrue(drivebase.aimAtTarget());
     driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
+    driverXbox.start().whileTrue(new Stop(shooter));
     
     // Left Dpad control for shooter
-    driverXbox.rightTrigger().whileTrue(new Launch(shooter));
-    driverXbox.leftTrigger().whileTrue(new SpinUp(shooter));
-    driverXbox.a().whileTrue(new Intake(shooter));
-    driverXbox.b().whileTrue(new Eject(shooter));
+    operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
+    operatorXbox.leftTrigger().whileTrue(new SpinUp(shooter));
+    operatorXbox.a().whileTrue(new Intake(shooter));
+    operatorXbox.b().whileTrue(new Eject(shooter));
+    operatorXbox.start().whileTrue(new Stop(shooter));
     // driverXbox.povUp(RightThumbstick).onTrue(shooter.AimUp(RightBumper));
     // driverXbox.povDown(RightThumbstick).onTrue(shooter.AimDown(LeftBumper));
 
