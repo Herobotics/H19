@@ -45,7 +45,8 @@ public class SwerveSubsystem extends SubsystemBase {
   private final boolean     useVisionCalibration = true;
   
   // private final double maximumSpeed = Units.feetToMeters(0.5);
-  private final double maximumSpeed = 0.3;  // could be meters per second or % of max
+  private finsl double maximumHumanSpeed = 3.0;
+  private final double maximumAutoSpeed = 2.0;  // could be meters per second or % of max
 
 public SwerveSubsystem(){
   try
@@ -55,7 +56,7 @@ public SwerveSubsystem(){
                                                     Rotation2d.fromDegrees(0));
       SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
       File directory = new File(Filesystem.getDeployDirectory(),"swerve");
-      swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumSpeed, startingPose);
+      swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumHumanSpeed, startingPose);
       System.out.println(swerveDrive.swerveDriveConfiguration.toString());
       // swerveDrive.setHeadingCorrection(false);
       // swerveDrive.setCosineCompensator(false);
@@ -253,7 +254,7 @@ public Command driveFieldOriented(SwerveInputStream driveAngularVelocity) {
     double targetingAngularVelocity = LimelightHelpers.getTX(Constants.limelight_name) * kP;
 
     // convert to radians per second for our drive method
-    targetingAngularVelocity *= maximumSpeed;
+    targetingAngularVelocity *= maximumAutoSpeed;
 
     //invert since tx is positive when the target is to the right of the crosshair
     targetingAngularVelocity *= -1.0;
@@ -268,7 +269,7 @@ public Command driveFieldOriented(SwerveInputStream driveAngularVelocity) {
   {    
     double kP = .1;
     double targetingForwardSpeed = LimelightHelpers.getTY(Constants.limelight_name) * kP;
-    targetingForwardSpeed *= maximumSpeed;
+    targetingForwardSpeed *= maximumAutoSpeed;
     targetingForwardSpeed *= -1.0;
     return targetingForwardSpeed;
   }
