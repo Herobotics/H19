@@ -70,11 +70,11 @@ public final class Constants {
 
   public static final class IntakeConstants {
     // Motor controller IDs for Intake motors
-    public static final int INTAKE_MOVER_MOTOR_ID = 5;
-    public static final int INTAKE_ROLLER_MOTOR_ID = 2;
+    public static final int INTAKE_MOVER_MOTOR_ID = 55;
+    public static final int INTAKE_ROLLER_MOTOR_ID = 56;
 
-    public static final double ROLLER_MOTOR_INTAKE_SPEED = .1;
-    public static final double MOVER_MOTOR_EXTENDED_ANGLE = 0.5;
-    public static final double MOVER_MOTOR_RETRACTED_ANGLE = 0;
+    public static final double ROLLER_MOTOR_INTAKE_PERCENT = .7;
+    public static final double MOVER_MOTOR_EXTENSION_VOLTAGE = 1.0;
+    public static final double MOVER_MOTOR_RETRACT_VOLTAGE = -1.0;
   }
 }

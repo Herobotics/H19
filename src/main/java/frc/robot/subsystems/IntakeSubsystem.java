@@ -21,28 +21,35 @@ public class IntakeSubsystem extends SubsystemBase {
     // Aiming the shooter
     public Command IntakeOut() {
         return this.runOnce(() -> {
-            spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_SPEED);
-            extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENDED_ANGLE);
+            spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
+            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
+            extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
         });
     }
     
     public Command IntakeReversed() {
         return this.runOnce(() -> {
-            spinningmotor.set(VictorSPXControlMode.PercentOutput, -1.0 * Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_SPEED);
-            extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENDED_ANGLE);
+            spinningmotor.set(VictorSPXControlMode.PercentOutput, -1.0 * Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
+            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
         });
     }
 
     public Command IntakeIn() {
         return this.runOnce(() -> {
             spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
-            extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACTED_ANGLE);
+            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
+            extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
         });
     }
 
     public Command StopJustRoller() {
         return this.runOnce(() -> {
             spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
+        });
+    }
+    public Command StopJustExension() {
+        return this.runOnce(() -> {
+            extendoMotor.setVoltage(0);
         });
     }
     

@@ -5,6 +5,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
@@ -83,10 +84,11 @@ public class RobotContainer {
     // Left Dpad control for shooter
     operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
     operatorXbox.leftTrigger().whileTrue(new SpinUp(shooter));
-    operatorXbox.a().onTrue(intake.IntakeOut());
-    operatorXbox.b().onTrue(intake.IntakeIn());
-    operatorXbox.povDown().onTrue(intake.IntakeReversed());
-    operatorXbox.povRight().onTrue(intake.StopJustRoller());
+    operatorXbox.a().whileTrue(intake.IntakeOut());
+    operatorXbox.b().whileTrue(intake.IntakeIn());
+    operatorXbox.povDown().onTrue(intake.StopJustExension());
+    // operatorXbox.povDown().onTrue(intake.IntakeReversed());
+    // operatorXbox.povRight().onTrue(intake.StopJustRoller());
 
     operatorXbox.start().whileTrue(new Stop(shooter));
 
@@ -116,5 +118,6 @@ public class RobotContainer {
     // return Autos.exampleAuto(drivebase);
     // return Autos.pathPlannedAuto();
     return autoChooser.getSelected();
+    // return Commands.none();
   }
 }
