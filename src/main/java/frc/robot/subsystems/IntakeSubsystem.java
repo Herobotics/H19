@@ -18,38 +18,35 @@ public class IntakeSubsystem extends SubsystemBase {
         
     }
 
-    // Aiming the shooter
-    public Command IntakeOut() {
-        return this.runOnce(() -> {
-            spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
+    // 
+    public Command MoveOut() {
+        return this.run(() -> {
+            // spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
             //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
         });
     }
-    
-    public Command IntakeReversed() {
-        return this.runOnce(() -> {
-            spinningmotor.set(VictorSPXControlMode.PercentOutput, -1.0 * Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
-            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
-        });
-    }
 
-    public Command IntakeIn() {
-        return this.runOnce(() -> {
-            spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
+    public Command MoveIn() {
+        return this.run(() -> {
+            //spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
             //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
         });
     }
-
-    public Command StopJustRoller() {
-        return this.runOnce(() -> {
-            spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
+    
+    public Command FEEEED() {
+        return this.run(() -> {
+            spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
+            extendoMotor.setVoltage(0);
+            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
         });
     }
-    public Command StopJustExension() {
-        return this.runOnce(() -> {
+
+    public Command StopEveryMotor() {
+        return this.run(() -> {
             extendoMotor.setVoltage(0);
+            spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
         });
     }
     
