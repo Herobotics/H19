@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
-    private final TalonFX extendoMotor = new TalonFX(5);
-    private final VictorSPX spinningmotor = new VictorSPX(2);
+    private final TalonFX extendoMotor = new TalonFX(Constants.IntakeConstants.INTAKE_MOVER_MOTOR_ID);
+    private final VictorSPX spinningmotor = new VictorSPX(Constants.IntakeConstants.INTAKE_ROLLER_MOTOR_ID);
     // private static final Angle maxAngle = Angle(0.5);
 
     public IntakeSubsystem() {
