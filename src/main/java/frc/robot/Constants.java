@@ -66,5 +66,15 @@ public final class Constants {
     // help avoid turning too fast and beign difficult to control
     public static final double DRIVE_SCALING = 0.7;
     public static final double ROTATION_SCALING = 0.8;
-  } 
+  }
+
+  public static final class IntakeConstants {
+    // Motor controller IDs for Intake motors
+    public static final int INTAKE_MOVER_MOTOR_ID = 5;
+    public static final int INTAKE_ROLLER_MOTOR_ID = 2;
+
+    public static final double ROLLER_MOTOR_INTAKE_SPEED = .1;
+    public static final double MOVER_MOTOR_EXTENDED_ANGLE = 0.5;
+    public static final double MOVER_MOTOR_RETRACTED_ANGLE = 0;
+  }
 }

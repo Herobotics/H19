@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -12,6 +14,7 @@ import frc.robot.commands.Launch;
 import frc.robot.commands.SpinUp;
 import frc.robot.commands.Stop;
 import frc.robot.subsystems.CANFuelSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import swervelib.SwerveInputStream;
 
@@ -32,9 +35,10 @@ public class RobotContainer {
       new CommandXboxController(1); // Port 1
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
   private final CANFuelSubsystem shooter = new CANFuelSubsystem();
+  private final IntakeSubsystem intake = new IntakeSubsystem();
 
 //     // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
-//   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
+  private final SendableChooser<Command> autoChooser;
 
   /**
    * Converts driver input into a field-relative ChassisSpeeds that is controlled by angular velocity.
@@ -53,8 +57,8 @@ public class RobotContainer {
     // Build an auto chooser. This will use Commands.none() as the default option.
     // autoChooser = AutoBuilder.buildAutoChooser();
     // Another option that allows you to specify the default auto by its name
-    // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
-    // SmartDashboard.putData("Auto Chooser", autoChooser);
+    autoChooser = AutoBuilder.buildAutoChooser("New Auto");
+    SmartDashboard.putData("Auto Chooser", autoChooser);
 
     // Configure the trigger bindings
     configureBindings();
@@ -79,9 +83,14 @@ public class RobotContainer {
     // Left Dpad control for shooter
     operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
     operatorXbox.leftTrigger().whileTrue(new SpinUp(shooter));
-    operatorXbox.a().whileTrue(new Intake(shooter));
-    operatorXbox.b().whileTrue(new Eject(shooter));
+    operatorXbox.a().onTrue(intake.IntakeOut());
+    operatorXbox.b().onTrue(intake.IntakeIn());
+    operatorXbox.povDown().onTrue(intake.IntakeReversed());
+    operatorXbox.povRight().onTrue(intake.StopJustRoller());
+
     operatorXbox.start().whileTrue(new Stop(shooter));
+
+    // Intake comman
     // driverXbox.povUp(RightThumbstick).onTrue(shooter.AimUp(RightBumper));
     // driverXbox.povDown(RightThumbstick).onTrue(shooter.AimDown(LeftBumper));
 
@@ -105,7 +114,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     // return Autos.exampleAuto(drivebase);
-    return Autos.pathPlannedAuto();
-    // return autoChooser.getSelected();
+    // return Autos.pathPlannedAuto();
+    return autoChooser.getSelected();
   }
 }
