@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,6 +13,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.Eject;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Launch;
+import frc.robot.commands.LaunchSequence;
 import frc.robot.commands.SpinUp;
 import frc.robot.commands.Stop;
 import frc.robot.subsystems.CANFuelSubsystem;
@@ -55,6 +57,9 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // register named commands
+    NamedCommands.registerCommand("launchSeq", new LaunchSequence(shooter));
+
     // Build an auto chooser. This will use Commands.none() as the default option.
     // autoChooser = AutoBuilder.buildAutoChooser();
     // Another option that allows you to specify the default auto by its name
