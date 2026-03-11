@@ -89,9 +89,7 @@ public class RobotContainer {
     
     // Shooter controls
     operatorXbox.leftTrigger().onTrue(
-      shooter.toggleState()
-      .withTimeout(20)
-      .andThen(shooter.setState(CANFuelSubsystem.ShooterState.STAHP))).debounce(2);
+      shooter.toggleState());
     operatorXbox.rightTrigger().whileTrue(
       shooter.setState(CANFuelSubsystem.ShooterState.SHOOT));
 

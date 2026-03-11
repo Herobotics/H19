@@ -79,13 +79,14 @@ public class CANFuelSubsystem extends SubsystemBase {
   }
 
   public Command setState(ShooterState new_state) {
-    return Commands.run(() -> {
+    return Commands.runOnce(() -> {
       this.state = new_state;
     });
   }
 
   public Command toggleState() {
-    return Commands.run(() -> {
+    return Commands.runOnce(() -> {
+      System.out.println("Running... once?");
       if (this.state == ShooterState.STAHP) {
         this.state = ShooterState.SPIN_UP;
       } else { // spin up or shooting
