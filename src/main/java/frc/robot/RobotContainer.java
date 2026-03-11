@@ -87,10 +87,13 @@ public class RobotContainer {
     driverXbox.start().whileTrue(new Stop(shooter));
     intake.setDefaultCommand(intake.StopEveryMotor());
     
-    // Left Dpad control for shooter
-    operatorXbox.leftTrigger().onTrue(new SpinUp(shooter));
-    operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
-    operatorXbox.rightTrigger().whileFalse(new Stop(shooter));
+    // Shooter controls
+    operatorXbox.leftTrigger().onTrue(
+      shooter.toggleState()
+      .withTimeout(20)
+      .andThen(shooter.setState(CANFuelSubsystem.ShooterState.STAHP)));
+    operatorXbox.rightTrigger().whileTrue(
+      shooter.setState(CANFuelSubsystem.ShooterState.SHOOT));
 
     // operatorXbox.povDown().onTrue(intake.IntakeReversed());
     // operatorXbox.povRight().onTrue(intake.StopJustRoller());
