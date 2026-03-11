@@ -88,8 +88,9 @@ public class RobotContainer {
     intake.setDefaultCommand(intake.StopEveryMotor());
     
     // Left Dpad control for shooter
+    operatorXbox.leftTrigger().onTrue(new SpinUp(shooter));
     operatorXbox.rightTrigger().whileTrue(new Launch(shooter));
-    operatorXbox.leftTrigger().whileTrue(new SpinUp(shooter));
+    operatorXbox.rightTrigger().whileFalse(new Stop(shooter));
 
     // operatorXbox.povDown().onTrue(intake.IntakeReversed());
     // operatorXbox.povRight().onTrue(intake.StopJustRoller());
