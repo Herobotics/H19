@@ -84,7 +84,7 @@ public class RobotContainer {
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     driverXbox.y().whileTrue(drivebase.aimAtTarget());
     driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
-    driverXbox.start().whileTrue(new Stop(shooter));
+    driverXbox.start().whileTrue(drivebase.resetGyro());
     intake.setDefaultCommand(intake.StopEveryMotor());
     
     // Shooter controls
@@ -92,15 +92,16 @@ public class RobotContainer {
       shooter.toggleState());
     operatorXbox.rightTrigger().whileTrue(
       shooter.setState(CANFuelSubsystem.ShooterState.SHOOT));
+    operatorXbox.rightTrigger().onFalse(shooter.setState(CANFuelSubsystem.ShooterState.SPIN_UP));
 
     // operatorXbox.povDown().onTrue(intake.IntakeReversed());
     // operatorXbox.povRight().onTrue(intake.StopJustRoller());
     operatorXbox.a().whileTrue(intake.MoveOut());
     operatorXbox.b().whileTrue(intake.MoveIn());
-    operatorXbox.x().whileTrue(intake.StopEveryMotor());
+    operatorXbox.x().whileTrue(intake.Feedout());
     operatorXbox.y().whileTrue(intake.FEEEED());
 
-    operatorXbox.start().whileTrue(new Stop(shooter));
+    operatorXbox.start().whileTrue(Commands.parallel(new Stop(shooter), intake.StopEveryMotor()));
 
     // Intake comman
     // driverXbox.povUp(RightThumbstick).onTrue(shooter.AimUp(RightBumper));

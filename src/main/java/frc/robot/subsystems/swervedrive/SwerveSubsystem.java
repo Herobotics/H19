@@ -93,6 +93,15 @@ public SwerveSubsystem(){
     swerveDrive.resetOdometry(initialHolonomicPose);
   }
 
+  /**
+   */
+  public Command resetGyro()
+  {
+    return run(() -> {
+      swerveDrive.zeroGyro();
+    });
+  }
+
 public Command drive(
       double xSpeed, double ySpeed, double rot) {
         return run(() -> {
