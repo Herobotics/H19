@@ -82,6 +82,8 @@ public class RobotContainer {
   private void configureBindings() {
     Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+    driverXbox.rightTrigger().whileTrue(drivebase.driveRobotOriented(driveAngularVelocity));
+
     driverXbox.y().whileTrue(drivebase.aimAtTarget());
     driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
     driverXbox.start().whileTrue(drivebase.resetGyro());

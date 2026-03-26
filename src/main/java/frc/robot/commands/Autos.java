@@ -12,8 +12,8 @@ public final class Autos {
 
   public static Command exampleAuto(SwerveSubsystem drivebase) {
     return Commands.sequence(
-        drivebase.drive(1.0, 0, 0).withTimeout(5.0),
-        drivebase.drive(0, 1.0, 0)
+        drivebase.driveRobotOriented(1.0, 0, 0).withTimeout(5.0),
+        drivebase.driveRobotOriented(0, 1.0, 0)
         );
   }
 

@@ -102,13 +102,20 @@ public SwerveSubsystem(){
     });
   }
 
-public Command drive(
+public Command driveRobotOriented(
       double xSpeed, double ySpeed, double rot) {
         return run(() -> {
         ChassisSpeeds cs = new ChassisSpeeds(xSpeed, ySpeed, rot);
-    swerveDrive.driveFieldOriented(cs);
+    swerveDrive.drive(cs);
     });
-      }
+}
+
+public Command driveRobotOriented(
+      SwerveInputStream driveAngularVelocity) {
+  return run(() -> {
+    swerveDrive.drive(driveAngularVelocity.get());
+  });
+}
 
 public Command driveForward(Distance distance) {
   return Commands.none();
