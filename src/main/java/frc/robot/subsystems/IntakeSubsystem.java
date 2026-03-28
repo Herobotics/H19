@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public Command MoveOut() {
         return this.run(() -> {
             // spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
-            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
+            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_POSITION);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
         });
     }
@@ -30,7 +30,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public Command MoveIn() {
         return this.run(() -> {
             //spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
-            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
+            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_POSITION);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
         });
     }
@@ -55,6 +55,10 @@ public class IntakeSubsystem extends SubsystemBase {
             //extendoMotor.setVoltage(0);
             spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
         });
+    }
+
+    public double HowFarOutIsTheIntake() {
+        return extendoMotor.getPosition().getValueAsDouble();
     }
     
 }
