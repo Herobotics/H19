@@ -78,8 +78,7 @@ public class CANFuelSubsystem extends SubsystemBase {
       this.setFeederRoller(SmartDashboard.getNumber("Launching spin-up feeder value", INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT));
     } else if (this.state == ShooterState.STAHP) {
       System.out.println("Shooter state: STAHP");
-      this.setIntakeLauncherRoller(0);
-      this.setFeederRoller(0);
+      this.stop();
     }
   }
 
@@ -114,8 +113,8 @@ public class CANFuelSubsystem extends SubsystemBase {
   // A method to stop the rollers
   public void stop() {
     Indexer.set(0);
-    LeftIntakeLauncher.set(0);
-    RightIntakeLauncher.set(0);
+    LeftIntakeLauncher.setVoltage(0);
+    RightIntakeLauncher.setVoltage(0);
   }
 
   @Override
