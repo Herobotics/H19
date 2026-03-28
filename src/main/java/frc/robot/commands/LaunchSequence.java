@@ -18,6 +18,7 @@ public class LaunchSequence extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new SpinUp(fuelSubsystem).withTimeout(FuelConstants.SPIN_UP_SECONDS),
-        new Launch(fuelSubsystem).withTimeout(FuelConstants.SHOOT_AUTO_SECONDS));
+        new Launch(fuelSubsystem));
+        //new Launch(fuelSubsystem).withTimeout(FuelConstants.SHOOT_AUTO_SECONDS));
   }
 }

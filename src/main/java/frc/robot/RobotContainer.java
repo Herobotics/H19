@@ -66,7 +66,7 @@ public class RobotContainer {
     // Build an auto chooser. This will use Commands.none() as the default option.
     // autoChooser = AutoBuilder.buildAutoChooser();
     // Another option that allows you to specify the default auto by its name
-    autoChooser = AutoBuilder.buildAutoChooser("New Auto");
+    autoChooser = AutoBuilder.buildAutoChooser("bule");
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     // Configure the trigger bindings

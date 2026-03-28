@@ -24,10 +24,7 @@ public class Launch extends Command {
   // appropriate values for intaking
   @Override
   public void initialize() {
-    fuelSubsystem
-        .setIntakeLauncherRoller(
-            SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_CORNER_RPS));
-    fuelSubsystem.setFeederRoller(SmartDashboard.getNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT));
+    fuelSubsystem.setState(CANFuelSubsystem.ShooterState.SHOOT);
   }
 
   // Called every time the scheduler runs while the command is scheduled. This
@@ -39,7 +36,7 @@ public class Launch extends Command {
   // Called once the command ends or is interrupted. Stop the rollers
   @Override
   public void end(boolean interrupted) {
-    //fuelSubsystem.stop();
+    fuelSubsystem.stop();
   }
 
   // Returns true when the command should end.
