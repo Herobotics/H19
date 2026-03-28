@@ -54,6 +54,8 @@ public final class Constants {
     public static final double INTAKE_EJECT_PERCENT = -0.8;
 
     public static final double SPIN_UP_SECONDS = 0.75;
+    // TODO MAKE SURE THEY ALL GET OUT
+    public static final double SHOOT_AUTO_SECONDS = 8.0;
 
     public static final double LAUNCHER_KV = 0.118;
     public static final double LAUNCHER_KP = 0.5;

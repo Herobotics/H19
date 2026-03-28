@@ -58,7 +58,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // register named commands
-    NamedCommands.registerCommand("launchSeq", new LaunchSequence(shooter));
+    NamedCommands.registerCommand("spin up and launch", new LaunchSequence(shooter));
 
     // Build an auto chooser. This will use Commands.none() as the default option.
     // autoChooser = AutoBuilder.buildAutoChooser();
