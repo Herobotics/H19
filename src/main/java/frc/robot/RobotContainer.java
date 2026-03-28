@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
 import frc.robot.commands.Eject;
+import frc.robot.commands.Extendo;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Launch;
 import frc.robot.commands.LaunchSequence;
@@ -59,6 +60,8 @@ public class RobotContainer {
   public RobotContainer() {
     // register named commands
     NamedCommands.registerCommand("spin up and launch", new LaunchSequence(shooter));
+    NamedCommands.registerCommand("get out of my way", new Extendo(intake));
+
 
     // Build an auto chooser. This will use Commands.none() as the default option.
     // autoChooser = AutoBuilder.buildAutoChooser();
