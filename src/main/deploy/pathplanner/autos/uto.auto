@@ -5,15 +5,15 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "launchSeq"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "back and shoot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "launchSeq"
           }
         }
       ]

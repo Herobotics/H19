@@ -52,7 +52,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public Command StopEveryMotor() {
         return this.run(() -> {
-            extendoMotor.setVoltage(0);
+            //extendoMotor.setVoltage(0);
             spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
         });
     }
