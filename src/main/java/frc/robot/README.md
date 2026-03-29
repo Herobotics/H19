@@ -2,31 +2,26 @@
 
 Contains important notes for contributing to this codebase.
 
-## Important code change history
-
-1. Generated sample TimedRobot
-2. Added YAGSL driving and configs
-3. Converted to Command Based Programming
-4. Added Autonomous code
-5. Added Shooter subsystem
-
 Necessary TODOs:
-- [ ] Design intake and shooter controls (Devonair)
-- [ ] Add EveryBot code for controlling the fuel ([subsystem code]- (https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/blob/main/src/main/java/frc/robot/subsystems/CANFuelSubsystem.java))/[command code](https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/tree/main/src/main/java/frc/robot/commands) & modify it for our usages
-- [x] Add AprilTag tracking to our swerve drive
-- [ ] Hook up Limelight camera and give it the right software
-- [ ] Upload a field map to our Limelight
+- [ ] Check that navgrid.json is correct
+- [ ] Update Limelight position relative to robot
+- [ ] Test limelight localization on both sides of the field
+- [ ] Test autos on both sides of the field
 
 Recommended TODOs:
 - [ ] Add telemetry data about the AprilTags to a dashboard
 - [ ] Verify the robot can accurately drive 3m straight and turn 360 degrees. If broken, tune PID.
-- [ ] Make some sort of PathPlanner Autonomous path
-- [ ] Add an "auto-align target" button
+- [ ] Make collect and shoot Autos
+- [ ] Add set heading to the autonomous init
+- [ ] Figure out the rpm-to-distance curve
+- [ ] Add distance detection to apriltags
+- [ ] Make a pipeline for blue shooting; make a pipeline for red shooting
+- [ ] Figure out shoot-on-the-move parameters: what angle for a given speed compensates?
+- [ ] Add functionality to strafe while shooting? Put it on the dpad?
 
 In case of broken, TODOs:
+- [ ] Figure out if late canbus frames are a problem
 - [ ] Calibrate the gyroscope. We did this last year, was it in Phoenix Tuner X?
-- [ ] Add a "reset gyroscope" button
-- [ ] Update Limelight position relative to robot
 - [ ] Calibrate/characterize the robot's PID loop with SysId
 - [ ] Limit which AprilTags we are looking at to just the centered ones.
 - [ ] Check that our odometry has an always-blue-corner origin, which is compatible with PathPlanner
