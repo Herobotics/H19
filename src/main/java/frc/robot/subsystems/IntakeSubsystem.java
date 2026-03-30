@@ -33,6 +33,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public Command MoveIn() {
         return this.run(() -> {
             //spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
+            spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
             //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_POSITION);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
         });
