@@ -6,7 +6,7 @@ pre-Monday code to add:
 - [x] move the printlns to use the dashboard so Elastic can use it
 - [x] add more diagnostics for Elastic/visualization
 - [ ] add sample distance vs rps table
-- [ ] add area vs distance code
+- [x] add area vs distance code
 - [ ] add functionality to "hold" intake in when buttons aren't held
 - [ ] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
 - [x] simulate autonomous in Elastic to diagnose
@@ -16,8 +16,8 @@ pre-Monday code to add:
 - [ ] Tune position PID for intake
 - [ ] Add "keep same position" on let go of button to prevent gravity + test
 - [ ] Determine distance vs shooting speed graph
-- [ ] check that direction is set based on autonomous chosen
-- [ ] check that states are populated into elastic
+- [ ] verify that direction is set based on autonomous chosen
+- [ ] verify that states are populated into elastic
 --- disabled tasks
 - [ ] Update Limelight position relative to robot
 - [ ] Make pipelines for AprilTag ID for just the Hub

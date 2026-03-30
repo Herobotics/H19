@@ -17,6 +17,7 @@ import frc.robot.commands.Launch;
 import frc.robot.commands.LaunchSequence;
 import frc.robot.commands.SpinUp;
 import frc.robot.commands.Stop;
+import frc.robot.subsystems.swervedrive.AlignerSubsystem;
 import frc.robot.subsystems.CANFuelSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -40,6 +41,7 @@ public class RobotContainer {
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
   private final CANFuelSubsystem shooter = new CANFuelSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
+  private final AlignerSubsystem aligner = new AlignerSubsystem();
 
 //     // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
   private final SendableChooser<Command> autoChooser;
