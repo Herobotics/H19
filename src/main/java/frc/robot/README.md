@@ -2,35 +2,64 @@
 
 Contains important notes for contributing to this codebase.
 
-## Important code change history
+pre-Monday code to add:
+- [x] move the printlns to use the dashboard so Elastic can use it
+- [x] add more diagnostics for Elastic/visualization
+- [x] add sample distance vs rps table
+- [x] add area vs distance code
+- [x] add functionality to "hold" intake in when buttons aren't held
+- [x] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
+- [x] simulate autonomous in Elastic to diagnose
 
-1. Generated sample TimedRobot
-2. Added YAGSL driving and configs
-3. Converted to Command Based Programming
-4. Added Autonomous code
-5. Added Shooter subsystem
+## Monday's punch list
+--- enabled tasks
+- [ ] Tune position PID for intake
+- [ ] Test "keep same position" when no buttons pressed
+- [ ] Determine distance vs shooting speed graph
+- [ ] verify that direction is set based on autonomous chosen
+- [ ] verify that states are populated into elastic
+--- disabled tasks
+- [ ] Integrate distance into RPS caluclation in setMotorState
+- [ ] Update Limelight position relative to robot
+- [ ] Make pipelines for AprilTag ID for just the Hub
+- [ ] Make distance vs apriltag area graph
+--- enabled tasks
+- [ ] tune direction following apriltag kP
+- [ ] test it!
+
 
 Necessary TODOs:
-- [ ] Design intake and shooter controls (Devonair)
-- [ ] Add EveryBot code for controlling the fuel ([subsystem code]- (https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/blob/main/src/main/java/frc/robot/subsystems/CANFuelSubsystem.java))/[command code](https://github.com/Robonauts-Everybot/FRC-Everybot-2026-Code/tree/main/src/main/java/frc/robot/commands) & modify it for our usages
-- [x] Add AprilTag tracking to our swerve drive
-- [ ] Hook up Limelight camera and give it the right software
-- [ ] Upload a field map to our Limelight
+- [ ] Check that navgrid.json is correct
+- [ ] Update Limelight position relative to robot
+- [ ] Test limelight localization on both sides of the field
+- [ ] Test autos on both sides of the field
 
 Recommended TODOs:
 - [ ] Add telemetry data about the AprilTags to a dashboard
 - [ ] Verify the robot can accurately drive 3m straight and turn 360 degrees. If broken, tune PID.
-- [ ] Make some sort of PathPlanner Autonomous path
-- [ ] Add an "auto-align target" button
+- [ ] Make collect and shoot Autos
+- [ ] Add set heading to the autonomous init
+- [ ] Figure out the rpm-to-distance curve
+- [ ] Add distance detection to apriltags
+- [ ] Make a pipeline for blue shooting; make a pipeline for red shooting
+- [ ] Figure out shoot-on-the-move parameters: what angle for a given speed compensates?
+- [ ] Add functionality to strafe while shooting? Put it on the dpad?
 
 In case of broken, TODOs:
+- [ ] Figure out if late canbus frames are a problem
 - [ ] Calibrate the gyroscope. We did this last year, was it in Phoenix Tuner X?
-- [ ] Add a "reset gyroscope" button
-- [ ] Update Limelight position relative to robot
 - [ ] Calibrate/characterize the robot's PID loop with SysId
 - [ ] Limit which AprilTags we are looking at to just the centered ones.
 - [ ] Check that our odometry has an always-blue-corner origin, which is compatible with PathPlanner
 - [ ] Add the rest of the [Limelight MegaTag calibration steps](https://docs.limelightvision.io/docs/docs-limelight/apis/limelight-lib#6-special-apriltag-functionality)
+
+## How To Drive This Robot
+
+The swerve drive is field-oriented, using the left joystick for position and the right joystick for rotation. If the IMU gets messed up, you have two options:
+- (untested) Hold the right trigger, then it will drive robot-oriented
+- Rotate so you are lined up with the field, then press the START button to re-zero the gyro.
+
+
 
 ## More about Command Based Programming
 
@@ -51,3 +80,7 @@ Vision tracking with the Limelight camera can be added by following the [Limelig
 
 ### PathPlanner
 -[Documentation](https://pathplanner.dev/home.html)
+
+### Simulation
+
+You can simulate our robot! WPILIB -> Simulate Robot. You can see the dashboard with WPILIB -> Start Tool -> Elastic.
