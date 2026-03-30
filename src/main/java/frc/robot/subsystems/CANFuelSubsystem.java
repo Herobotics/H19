@@ -62,6 +62,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT);
     SmartDashboard.putNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS);
     SmartDashboard.putString("Shooter state", "INIT");
+    SmartDashboard.putNumber("Shooter RPS", -1);
     //SmartDashboard.putNumber("Spin-up feeder roller value", SPIN_UP_FEEDER_VOLTAGE);
   }
 
@@ -82,6 +83,7 @@ public class CANFuelSubsystem extends SubsystemBase {
       this.setIntakeLauncherRoller(0);
       this.setFeederRoller(0);
     }
+    SmartDashboard.putNumber("Shooter RPS", this.RightIntakeLauncher.getVelocity().getValueAsDouble());
   }
 
   // Needed to bind to buttons

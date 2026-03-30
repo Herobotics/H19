@@ -3,8 +3,8 @@
 Contains important notes for contributing to this codebase.
 
 pre-Monday code to add:
-- [ ] move the printlns to use the dashboard so Elastic can use it
-- [ ] set direction based on autonomous chosen
+- [x] move the printlns to use the dashboard so Elastic can use it
+- [x] add more diagnostics for Elastic/visualization
 - [ ] add sample distance vs rps table
 - [ ] add area vs distance code
 - [ ] add functionality to "hold" intake in when buttons aren't held
@@ -16,6 +16,8 @@ pre-Monday code to add:
 - [ ] Tune position PID for intake
 - [ ] Add "keep same position" on let go of button to prevent gravity + test
 - [ ] Determine distance vs shooting speed graph
+- [ ] check that direction is set based on autonomous chosen
+- [ ] check that states are populated into elastic
 --- disabled tasks
 - [ ] Update Limelight position relative to robot
 - [ ] Make pipelines for AprilTag ID for just the Hub
