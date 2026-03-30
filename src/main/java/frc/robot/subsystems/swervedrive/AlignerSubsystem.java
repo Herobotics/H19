@@ -72,6 +72,10 @@ public class AlignerSubsystem extends SubsystemBase {
         }
     }
 
+    public double getTurnAmount() {
+        return -1.0 * this.angle * Constants.AprilTag.K_ALIGN_P;
+    }
+
     private void setEmptyValues() {
         this.distance = -1.0;
         this.angle = 0.0;

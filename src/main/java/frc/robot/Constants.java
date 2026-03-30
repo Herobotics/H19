@@ -28,6 +28,7 @@ public final class Constants {
     public static final double MIN_ANGLE = 2;
     public static final double MAX_ANGLE = 8;
 
+    public static final double K_ALIGN_P = 0.0;
   }
 
   public static final class DriveConstants {

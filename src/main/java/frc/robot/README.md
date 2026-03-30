@@ -8,7 +8,7 @@ pre-Monday code to add:
 - [x] add sample distance vs rps table
 - [x] add area vs distance code
 - [x] add functionality to "hold" intake in when buttons aren't held
-- [ ] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
+- [x] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
 - [x] simulate autonomous in Elastic to diagnose
 
 ## Monday's punch list

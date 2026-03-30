@@ -88,6 +88,10 @@ public class RobotContainer {
     Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
     drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     driverXbox.rightTrigger().whileTrue(drivebase.driveRobotOriented(driveAngularVelocity));
+    // MAGIC AUTO-ALIGN
+    driverXbox.leftTrigger().whileTrue(drivebase.driveRobotOriented(driverXbox.getLeftY() * -1,
+                                                                driverXbox.getLeftX() * -1,
+                                                                aligner.getTurnAmount()));
 
     driverXbox.y().whileTrue(drivebase.aimAtTarget());
     driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
