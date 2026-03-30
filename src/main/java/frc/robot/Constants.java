@@ -22,7 +22,7 @@ public final class Constants {
   public static final String limelight_name = "limelight-benji";
 
   public static final class AprilTag {
-    public static final double AREA_FACTOR = 30000.0;
+    public static final double AREA_FACTOR = 752.0;
     public static final double MIN_DISTANCE = 2;
     public static final double MAX_DISTANCE = 8;
     public static final double MIN_ANGLE = 2;

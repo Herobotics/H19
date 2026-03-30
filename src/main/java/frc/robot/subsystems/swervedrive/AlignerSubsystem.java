@@ -15,13 +15,14 @@ public class AlignerSubsystem extends SubsystemBase {
     // Example LookupTable (distance in feet, RPS)
     private static final InterpolatingDoubleTreeMap SHOOTER_MAP = new InterpolatingDoubleTreeMap();
     static {
-        SHOOTER_MAP.put(2.0, 60.0);
-        SHOOTER_MAP.put(3.0, 65.0);
-        SHOOTER_MAP.put(4.0, 70.0);
-        SHOOTER_MAP.put(5.0, 75.0);
-        SHOOTER_MAP.put(6.0, 80.0);
-        SHOOTER_MAP.put(7.0, 85.0);
-        SHOOTER_MAP.put(8.0, 90.0);
+        // TODO change to inches
+        SHOOTER_MAP.put(24.0, 60.0);
+        SHOOTER_MAP.put(36.0, 65.0);
+        SHOOTER_MAP.put(48.0, 70.0);
+        SHOOTER_MAP.put(60.0, 75.0);
+        SHOOTER_MAP.put(72.0, 80.0);
+        SHOOTER_MAP.put(84.0, 85.0);
+        SHOOTER_MAP.put(96.0, 90.0);
     }
 
     public AlignerSubsystem() {

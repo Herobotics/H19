@@ -22,7 +22,7 @@ pre-Monday code to add:
 - [ ] Integrate distance into RPS caluclation in setMotorState
 - [ ] Update Limelight position relative to robot
 - [ ] Make pipelines for AprilTag ID for just the Hub
-- [ ] Make distance vs apriltag area graph
+- [x] Make distance vs apriltag area graph
 --- enabled tasks
 - [ ] tune direction following apriltag kP
 - [ ] test it!
