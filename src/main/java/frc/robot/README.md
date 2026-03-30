@@ -7,14 +7,14 @@ pre-Monday code to add:
 - [x] add more diagnostics for Elastic/visualization
 - [x] add sample distance vs rps table
 - [x] add area vs distance code
-- [ ] add functionality to "hold" intake in when buttons aren't held
+- [x] add functionality to "hold" intake in when buttons aren't held
 - [ ] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
 - [x] simulate autonomous in Elastic to diagnose
 
 ## Monday's punch list
 --- enabled tasks
 - [ ] Tune position PID for intake
-- [ ] Add "keep same position" on let go of button to prevent gravity + test
+- [ ] Test "keep same position" when no buttons pressed
 - [ ] Determine distance vs shooting speed graph
 - [ ] verify that direction is set based on autonomous chosen
 - [ ] verify that states are populated into elastic
