@@ -61,23 +61,24 @@ public class CANFuelSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Intaking intake roller value", INTAKE_INTAKING_PERCENT);
     SmartDashboard.putNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT);
     SmartDashboard.putNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS);
+    SmartDashboard.putString("Shooter state", "INIT");
     //SmartDashboard.putNumber("Spin-up feeder roller value", SPIN_UP_FEEDER_VOLTAGE);
   }
 
   public void setMotorState() {
     if (this.state == ShooterState.SHOOT) {
-      System.out.println("Shooter state: SHOOT");
+      SmartDashboard.putString("Shooter state", "SHOOT");
       this.setIntakeLauncherRoller(
             SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS));
       this.setFeederRoller(SmartDashboard.getNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT));
     } else if (this.state == ShooterState.SPIN_UP) {
-      System.out.println("Shooter state: SPIN_UP");
+      SmartDashboard.putString("Shooter state", "SPIN_UP");
           this
         .setIntakeLauncherRoller(
             SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS));
       this.setFeederRoller(SmartDashboard.getNumber("Launching spin-up feeder value", INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT));
     } else if (this.state == ShooterState.STAHP) {
-      System.out.println("Shooter state: STAHP");
+      SmartDashboard.putString("Shooter state", "STAHP");
       this.setIntakeLauncherRoller(0);
       this.setFeederRoller(0);
     }

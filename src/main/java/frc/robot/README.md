@@ -3,13 +3,13 @@
 Contains important notes for contributing to this codebase.
 
 pre-Monday code to add:
-- [ ] move the printlns to use the dashboard so Glass can use it
+- [ ] move the printlns to use the dashboard so Elastic can use it
 - [ ] set direction based on autonomous chosen
 - [ ] add sample distance vs rps table
 - [ ] add area vs distance code
 - [ ] add functionality to "hold" intake in when buttons aren't held
 - [ ] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
-- [ ] simulate autonomous in glass to diagnose
+- [x] simulate autonomous in Elastic to diagnose
 
 ## Monday's punch list
 --- enabled tasks
@@ -50,6 +50,14 @@ In case of broken, TODOs:
 - [ ] Check that our odometry has an always-blue-corner origin, which is compatible with PathPlanner
 - [ ] Add the rest of the [Limelight MegaTag calibration steps](https://docs.limelightvision.io/docs/docs-limelight/apis/limelight-lib#6-special-apriltag-functionality)
 
+## How To Drive This Robot
+
+The swerve drive is field-oriented, using the left joystick for position and the right joystick for rotation. If the IMU gets messed up, you have two options:
+- (untested) Hold the right trigger, then it will drive robot-oriented
+- Rotate so you are lined up with the field, then press the START button to re-zero the gyro.
+
+
+
 ## More about Command Based Programming
 
 - [WPILib documentation](https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html)
@@ -69,3 +77,7 @@ Vision tracking with the Limelight camera can be added by following the [Limelig
 
 ### PathPlanner
 -[Documentation](https://pathplanner.dev/home.html)
+
+### Simulation
+
+You can simulate our robot! WPILIB -> Simulate Robot. You can see the dashboard with WPILIB -> Start Tool -> Elastic.
