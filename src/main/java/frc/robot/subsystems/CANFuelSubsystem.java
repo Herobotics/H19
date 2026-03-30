@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.subsystems.swervedrive.AlignerSubsystem;
 
 import static frc.robot.Constants.FuelConstants.*;
 
@@ -38,8 +39,10 @@ public class CANFuelSubsystem extends SubsystemBase {
 
   private ShooterState state;
 
+  private final AlignerSubsystem aligner;
+
   /** Creates a new CANBallSubsystem. */
-  public CANFuelSubsystem() {
+  public CANFuelSubsystem(AlignerSubsystem aligner) {
     // // create motors for each of the motors on the launcher mechanism
     LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
     RightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
@@ -47,6 +50,8 @@ public class CANFuelSubsystem extends SubsystemBase {
     RightIntakeLauncher.getConfigurator().apply(new Slot0Configs().withKV(Constants.FuelConstants.LAUNCHER_KV).withKP(Constants.FuelConstants.LAUNCHER_KP));
     Indexer = new SparkMax(INDEXER_MOTOR_ID, MotorType.kBrushed);
     state = ShooterState.STAHP;
+
+    this.aligner = aligner;
 
     // // create the configuration for the feeder roller, set a current limit and apply
     // // the config to the controller
@@ -67,16 +72,19 @@ public class CANFuelSubsystem extends SubsystemBase {
   }
 
   public void setMotorState() {
+    double desired_rps = 
+            SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS);
+    if (this.aligner.isAligned()) {
+      desired_rps = this.aligner.getRPS();
+    }
     if (this.state == ShooterState.SHOOT) {
       SmartDashboard.putString("Shooter state", "SHOOT");
-      this.setIntakeLauncherRoller(
-            SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS));
+      this.setIntakeLauncherRoller(desired_rps);
       this.setFeederRoller(SmartDashboard.getNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT));
     } else if (this.state == ShooterState.SPIN_UP) {
       SmartDashboard.putString("Shooter state", "SPIN_UP");
           this
-        .setIntakeLauncherRoller(
-            SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS));
+        .setIntakeLauncherRoller(desired_rps);
       this.setFeederRoller(SmartDashboard.getNumber("Launching spin-up feeder value", INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT));
     } else if (this.state == ShooterState.STAHP) {
       SmartDashboard.putString("Shooter state", "STAHP");

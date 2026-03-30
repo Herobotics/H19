@@ -39,9 +39,10 @@ public class RobotContainer {
   private final CommandXboxController operatorXbox =
       new CommandXboxController(1); // Port 1
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
-  private final CANFuelSubsystem shooter = new CANFuelSubsystem();
-  private final IntakeSubsystem intake = new IntakeSubsystem();
   private final AlignerSubsystem aligner = new AlignerSubsystem();
+  private final CANFuelSubsystem shooter = new CANFuelSubsystem(aligner);
+  private final IntakeSubsystem intake = new IntakeSubsystem();
+
 
 //     // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
   private final SendableChooser<Command> autoChooser;

@@ -15,14 +15,12 @@ public class AlignerSubsystem extends SubsystemBase {
     // Example LookupTable (distance in feet, RPS)
     private static final InterpolatingDoubleTreeMap SHOOTER_MAP = new InterpolatingDoubleTreeMap();
     static {
-        // TODO change to inches
-        SHOOTER_MAP.put(24.0, 60.0);
-        SHOOTER_MAP.put(36.0, 65.0);
-        SHOOTER_MAP.put(48.0, 70.0);
-        SHOOTER_MAP.put(60.0, 75.0);
-        SHOOTER_MAP.put(72.0, 80.0);
-        SHOOTER_MAP.put(84.0, 85.0);
-        SHOOTER_MAP.put(96.0, 90.0);
+        SHOOTER_MAP.put(64.0, 60.0);
+        SHOOTER_MAP.put(128.0, 85.0);
+        SHOOTER_MAP.put(114.0, 80.0);
+        SHOOTER_MAP.put(108.0, 78.0);
+        SHOOTER_MAP.put(0.0, 60.0);
+        SHOOTER_MAP.put(200.0, 100.0);
     }
 
     public AlignerSubsystem() {
@@ -48,7 +46,7 @@ public class AlignerSubsystem extends SubsystemBase {
             this.numTargets = LimelightHelpers.getTargetCount(Constants.limelight_name);
         }
         if (this.area > 0.0) {
-            this.distance = Constants.AprilTag.AREA_FACTOR / this.area;
+            this.distance = Constants.AprilTag.AREA_FACTOR / (Math.sqrt(this.area));
         }
     }
 

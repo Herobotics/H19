@@ -22,13 +22,13 @@ public final class Constants {
   public static final String limelight_name = "limelight-benji";
 
   public static final class AprilTag {
-    public static final double AREA_FACTOR = 752.0;
-    public static final double MIN_DISTANCE = 2;
-    public static final double MAX_DISTANCE = 8;
-    public static final double MIN_ANGLE = 2;
-    public static final double MAX_ANGLE = 8;
+    public static final double AREA_FACTOR = 52.0;
+    public static final double MIN_DISTANCE = 60.0;
+    public static final double MAX_DISTANCE = 150.0;
+    public static final double MIN_ANGLE = -5.0;
+    public static final double MAX_ANGLE = 8.0;
 
-    public static final double K_ALIGN_P = 0.0;
+    public static final double K_ALIGN_P = 0.01;
   }
 
   public static final class DriveConstants {
