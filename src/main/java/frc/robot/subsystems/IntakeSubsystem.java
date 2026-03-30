@@ -56,11 +56,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     // Default command
     public Command StopEveryMotor() {
-        return this.run(() -> { // consider runOncewhen position controlled
-            extendoMotor.setVoltage(0);
+        return this.runOnce(() -> { // consider runOncewhen position controlled
+            //extendoMotor.setVoltage(0);
 
             // Hold position
-            //extendoMotor.setPosition(extendoMotor.getPosition().getValueAsDouble());
+            extendoMotor.setPosition(extendoMotor.getPosition().getValueAsDouble());
             spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
         });
     }
