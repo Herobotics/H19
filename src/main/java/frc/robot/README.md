@@ -2,6 +2,29 @@
 
 Contains important notes for contributing to this codebase.
 
+pre-Monday code to add:
+- [ ] move the printlns to use the dashboard so Glass can use it
+- [ ] set direction based on autonomous chosen
+- [ ] add sample distance vs rps table
+- [ ] add area vs distance code
+- [ ] add functionality to "hold" intake in when buttons aren't held
+- [ ] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
+- [ ] simulate autonomous in glass to diagnose
+
+## Monday's punch list
+--- enabled tasks
+- [ ] Tune position PID for intake
+- [ ] Add "keep same position" on let go of button to prevent gravity + test
+- [ ] Determine distance vs shooting speed graph
+--- disabled tasks
+- [ ] Update Limelight position relative to robot
+- [ ] Make pipelines for AprilTag ID for just the Hub
+- [ ] Make distance vs apriltag area graph
+--- enabled tasks
+- [ ] tune direction following apriltag kP
+- [ ] test it!
+
+
 Necessary TODOs:
 - [ ] Check that navgrid.json is correct
 - [ ] Update Limelight position relative to robot
