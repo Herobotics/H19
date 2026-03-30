@@ -5,7 +5,7 @@ Contains important notes for contributing to this codebase.
 pre-Monday code to add:
 - [x] move the printlns to use the dashboard so Elastic can use it
 - [x] add more diagnostics for Elastic/visualization
-- [ ] add sample distance vs rps table
+- [x] add sample distance vs rps table
 - [x] add area vs distance code
 - [ ] add functionality to "hold" intake in when buttons aren't held
 - [ ] add direction following calculations following https://docs.photonvision.org/en/latest/docs/examples/aimingatatarget.html
@@ -19,6 +19,7 @@ pre-Monday code to add:
 - [ ] verify that direction is set based on autonomous chosen
 - [ ] verify that states are populated into elastic
 --- disabled tasks
+- [ ] Integrate distance into RPS caluclation in setMotorState
 - [ ] Update Limelight position relative to robot
 - [ ] Make pipelines for AprilTag ID for just the Hub
 - [ ] Make distance vs apriltag area graph

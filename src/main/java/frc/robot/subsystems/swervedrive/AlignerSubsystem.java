@@ -1,5 +1,7 @@
 package frc.robot.subsystems.swervedrive;
 
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
+import edu.wpi.first.math.interpolation.InterpolatingTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -10,6 +12,17 @@ public class AlignerSubsystem extends SubsystemBase {
     private double angle;
     private double area;  // Can never be 0
     private int numTargets;
+    // Example LookupTable (distance in feet, RPS)
+    private static final InterpolatingDoubleTreeMap SHOOTER_MAP = new InterpolatingDoubleTreeMap();
+    static {
+        SHOOTER_MAP.put(2.0, 60.0);
+        SHOOTER_MAP.put(3.0, 65.0);
+        SHOOTER_MAP.put(4.0, 70.0);
+        SHOOTER_MAP.put(5.0, 75.0);
+        SHOOTER_MAP.put(6.0, 80.0);
+        SHOOTER_MAP.put(7.0, 85.0);
+        SHOOTER_MAP.put(8.0, 90.0);
+    }
 
     public AlignerSubsystem() {
         setEmptyValues();
@@ -47,6 +60,16 @@ public class AlignerSubsystem extends SubsystemBase {
             return true;
         }
         return false;
+    }
+
+    public double getRPS() {
+        if ((this.distance > Constants.AprilTag.MIN_DISTANCE) &&
+            (this.distance < Constants.AprilTag.MAX_DISTANCE)) {
+                return SHOOTER_MAP.get(this.distance).doubleValue();
+            }
+        else {
+            return -1.0;
+        }
     }
 
     private void setEmptyValues() {
