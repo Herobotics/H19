@@ -84,10 +84,16 @@ public class CANFuelSubsystem extends SubsystemBase {
     }
   }
 
+  // Needed to bind to buttons
   public Command setState(ShooterState new_state) {
     return Commands.runOnce(() -> {
       this.state = new_state;
     });
+  }
+
+  // Non-Command version
+  public void setStateRegular(ShooterState new_state) {
+    this.state = new_state;
   }
 
   public Command toggleState() {
