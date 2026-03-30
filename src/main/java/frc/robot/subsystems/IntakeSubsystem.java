@@ -19,7 +19,6 @@ public class IntakeSubsystem extends SubsystemBase {
     public IntakeSubsystem() {
         extendoMotor.getConfigurator().apply(new Slot0Configs().withKP(1.7).withKI(0.001).withKD(0.09).withKS(1.5));
 
-
         SmartDashboard.putNumber("Extendo Motor Position", 0);
         SmartDashboard.putNumber("Extendo Motor Voltage", 0);
         SmartDashboard.putNumber("Spinning Motor Voltage", 0);
@@ -28,9 +27,10 @@ public class IntakeSubsystem extends SubsystemBase {
     // 
     public Command MoveOut() {
         return this.run(() -> {
+            extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
             // spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
             //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_POSITION);
-            extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
+            //extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_VOLTAGE);
         });
     }
 
@@ -38,7 +38,6 @@ public class IntakeSubsystem extends SubsystemBase {
         return this.run(() -> {
             //spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
             spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
-            //extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_POSITION);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
         });
     }
@@ -61,10 +60,10 @@ public class IntakeSubsystem extends SubsystemBase {
     // Default command
     public Command StopEveryMotor() {
         return this.runOnce(() -> { // consider runOncewhen position controlled
-            //extendoMotor.setVoltage(0);
+            extendoMotor.setVoltage(0);
 
             // Hold position
-            extendoMotor.setPosition(extendoMotor.getPosition().getValueAsDouble());
+            //extendoMotor.setPosition(extendoMotor.getPosition().getValueAsDouble());
             spinningmotor.set(VictorSPXControlMode.PercentOutput, 0);
         });
     }

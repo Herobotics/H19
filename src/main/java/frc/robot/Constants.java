@@ -89,9 +89,9 @@ public final class Constants {
     public static final int INTAKE_MOVER_MOTOR_ID = 55;
     public static final int INTAKE_ROLLER_MOTOR_ID = 56;
 
-    public static final double ROLLER_MOTOR_INTAKE_PERCENT = 0.7;
-    public static final double MOVER_MOTOR_EXTENSION_VOLTAGE = 1.5;
-    public static final double MOVER_MOTOR_RETRACT_VOLTAGE = -1.0;
+    public static final double ROLLER_MOTOR_INTAKE_PERCENT = -0.7;
+    public static final double MOVER_MOTOR_EXTENSION_VOLTAGE = -1.0;
+    public static final double MOVER_MOTOR_RETRACT_VOLTAGE = 1.5;
     // TODO CHECK THIS
     public static final double MOVER_MOTOR_EXTENSION_POSITION = 3.0;
     public static final double MOVER_MOTOR_RETRACT_POSITION = 0;

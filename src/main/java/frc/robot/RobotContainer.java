@@ -53,7 +53,7 @@ public class RobotContainer {
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
                                                                 () -> driverXbox.getLeftY() * -1,
                                                                 () -> driverXbox.getLeftX() * -1)
-                                                            .withControllerRotationAxis(driverXbox::getRightX)
+                                                            .withControllerRotationAxis(() -> driverXbox.getRightX() * -1)
                                                             .deadband(0.05)
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true);
@@ -95,7 +95,7 @@ public class RobotContainer {
                                                                 aligner.getTurnAmount()));
 
     driverXbox.y().whileTrue(drivebase.aimAtTarget());
-    driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
+    //driverXbox.x().whileTrue(drivebase.properDistanceFromTarget());
     driverXbox.start().whileTrue(drivebase.resetGyro());
     intake.setDefaultCommand(intake.StopEveryMotor());
     
@@ -108,8 +108,8 @@ public class RobotContainer {
 
     // operatorXbox.povDown().onTrue(intake.IntakeReversed());
     // operatorXbox.povRight().onTrue(intake.StopJustRoller());
-    operatorXbox.a().whileTrue(intake.MoveOut());
-    operatorXbox.b().whileTrue(intake.MoveIn());
+    operatorXbox.a().whileTrue(intake.MoveIn());
+    operatorXbox.b().whileTrue(intake.MoveOut());
     operatorXbox.x().whileTrue(intake.Feedout());
     operatorXbox.y().whileTrue(intake.FEEEED());
 
