@@ -71,7 +71,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // Default command
     public Command StopEveryMotor() {
         return this.runOnce(() -> { // consider runOncewhen position controlled
-            //extendoMotor.setVoltage(0);
+            extendoMotor.setVoltage(0);
 
             // Hold position
             //extendoMotor.setPosition(extendoMotor.getPosition().getValueAsDouble());
