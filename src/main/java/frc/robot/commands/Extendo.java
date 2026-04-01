@@ -47,7 +47,7 @@ public class Extendo extends Command {
   @Override
   public boolean isFinished() {
     double setpoint = Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_POSITION;
-    return (intakeSubsystem.HowFarOutIsTheIntake() < (setpoint + 0.1)) &&
+    return (intakeSubsystem.HowFarOutIsTheIntake() < (setpoint + 0.2)) &&
            (intakeSubsystem.HowFarOutIsTheIntake() > (setpoint - 0.1));
   }
 }

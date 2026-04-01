@@ -93,7 +93,7 @@ public final class Constants {
     public static final double MOVER_MOTOR_EXTENSION_VOLTAGE = -1.0;
     public static final double MOVER_MOTOR_RETRACT_VOLTAGE = 1.5;
     // TODO CHECK THIS
-    public static final double MOVER_MOTOR_EXTENSION_POSITION = -5.4;
+    public static final double MOVER_MOTOR_EXTENSION_POSITION = -5.5;
     public static final double MOVER_MOTOR_RETRACT_POSITION = 0;
   }
 }

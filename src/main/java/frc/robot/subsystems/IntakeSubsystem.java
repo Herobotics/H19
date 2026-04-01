@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix6.configs.Slot0Configs;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,6 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem() {
         extendoMotor.getConfigurator().apply(new Slot0Configs().withKP(1.7).withKI(0.001).withKD(0.09).withKS(1.5));
+        extendoMotor.setPosition(0.0);
 
         SmartDashboard.putNumber("Extendo Motor Position", 0);
         SmartDashboard.putNumber("Extendo Motor Voltage", 0);
@@ -25,7 +27,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void MoveOutAuto() {
-        extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_POSITION);
+        extendoMotor.setControl(new PositionVoltage(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_POSITION));
     }
 
     // 
