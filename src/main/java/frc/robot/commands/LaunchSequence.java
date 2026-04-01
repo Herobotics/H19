@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.FuelConstants;
 import frc.robot.subsystems.CANFuelSubsystem;
@@ -18,7 +19,7 @@ public class LaunchSequence extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new SpinUp(fuelSubsystem).withTimeout(FuelConstants.SPIN_UP_SECONDS),
-        new Launch(fuelSubsystem));
-        //new Launch(fuelSubsystem).withTimeout(FuelConstants.SHOOT_AUTO_SECONDS));
+        new Launch(fuelSubsystem).withTimeout(FuelConstants.SHOOT_AUTO_SECONDS),
+        Commands.run(() -> fuelSubsystem.stop()));
   }
 }

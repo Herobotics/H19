@@ -27,7 +27,8 @@ public class Extendo extends Command {
   // appropriate values for intaking
   @Override
   public void initialize() {
-    intakeSubsystem.MoveOut();
+    System.out.println("Starting move out");
+    intakeSubsystem.MoveOutAuto();
   }
 
   // Called every time the scheduler runs while the command is scheduled. This
@@ -39,7 +40,7 @@ public class Extendo extends Command {
   // Called once the command ends or is interrupted. Stop the rollers
   @Override
   public void end(boolean interrupted) {
-    intakeSubsystem.FEEEED();
+    intakeSubsystem.FEEEDAuto();
   }
 
   // Returns true when the command should end.

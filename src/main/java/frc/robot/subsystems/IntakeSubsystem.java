@@ -24,6 +24,10 @@ public class IntakeSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Spinning Motor Voltage", 0);
     }
 
+    public void MoveOutAuto() {
+        extendoMotor.setPosition(Constants.IntakeConstants.MOVER_MOTOR_EXTENSION_POSITION);
+    }
+
     // 
     public Command MoveOut() {
         return this.run(() -> {
@@ -40,6 +44,11 @@ public class IntakeSubsystem extends SubsystemBase {
             spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
             extendoMotor.setVoltage(Constants.IntakeConstants.MOVER_MOTOR_RETRACT_VOLTAGE);
         });
+    }
+
+    public void FEEEDAuto() {
+        spinningmotor.set(VictorSPXControlMode.PercentOutput, Constants.IntakeConstants.ROLLER_MOTOR_INTAKE_PERCENT);
+        extendoMotor.setVoltage(0);
     }
     
     public Command FEEEED() {
@@ -60,7 +69,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // Default command
     public Command StopEveryMotor() {
         return this.runOnce(() -> { // consider runOncewhen position controlled
-            extendoMotor.setVoltage(0);
+            //extendoMotor.setVoltage(0);
 
             // Hold position
             //extendoMotor.setPosition(extendoMotor.getPosition().getValueAsDouble());

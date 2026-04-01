@@ -65,7 +65,7 @@ public final class Constants {
 
     public static final double SPIN_UP_SECONDS = 0.75;
     // TODO MAKE SURE THEY ALL GET OUT
-    public static final double SHOOT_AUTO_SECONDS = 8.0;
+    public static final double SHOOT_AUTO_SECONDS = 4.0;
 
     public static final double LAUNCHER_KV = 0.118;
     public static final double LAUNCHER_KP = 0.5;
@@ -93,7 +93,7 @@ public final class Constants {
     public static final double MOVER_MOTOR_EXTENSION_VOLTAGE = -1.0;
     public static final double MOVER_MOTOR_RETRACT_VOLTAGE = 1.5;
     // TODO CHECK THIS
-    public static final double MOVER_MOTOR_EXTENSION_POSITION = 3.0;
+    public static final double MOVER_MOTOR_EXTENSION_POSITION = -5.4;
     public static final double MOVER_MOTOR_RETRACT_POSITION = 0;
   }
 }
