@@ -42,7 +42,7 @@ public class SwerveSubsystem extends SubsystemBase {
     /**
    * Enable vision odometry updates while driving.
    */
-  private final boolean     useVisionCalibration = true;
+  private final boolean     useVisionCalibration = false;
   
   // private final double maximumSpeed = Units.feetToMeters(0.5);
   private final double maximumHumanSpeed = 3.0;
@@ -54,7 +54,7 @@ public SwerveSubsystem(){
             Pose2d startingPose = new Pose2d(new Translation2d(Meter.of(2),
                                                                       Meter.of(4)),
                                                     Rotation2d.fromDegrees(0));
-      SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
+      SwerveDriveTelemetry.verbosity = TelemetryVerbosity.POSE;
       File directory = new File(Filesystem.getDeployDirectory(),"swerve");
       swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumHumanSpeed, startingPose);
       System.out.println(swerveDrive.swerveDriveConfiguration.toString());
