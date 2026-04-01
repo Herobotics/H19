@@ -14,12 +14,14 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -42,7 +44,7 @@ public class SwerveSubsystem extends SubsystemBase {
     /**
    * Enable vision odometry updates while driving.
    */
-  private final boolean     useVisionCalibration = true;
+  private final boolean     useVisionCalibration = false;
   
   // private final double maximumSpeed = Units.feetToMeters(0.5);
   private final double maximumHumanSpeed = 3.0;
@@ -54,7 +56,7 @@ public SwerveSubsystem(){
             Pose2d startingPose = new Pose2d(new Translation2d(Meter.of(2),
                                                                       Meter.of(4)),
                                                     Rotation2d.fromDegrees(0));
-      SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
+      SwerveDriveTelemetry.verbosity = TelemetryVerbosity.POSE;
       File directory = new File(Filesystem.getDeployDirectory(),"swerve");
       swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumHumanSpeed, startingPose);
       System.out.println(swerveDrive.swerveDriveConfiguration.toString());
@@ -98,6 +100,10 @@ public SwerveSubsystem(){
   public Command resetGyro()
   {
     return run(() -> {
+      if (DriverStation.getAlliance().get() == Alliance.Red) {
+        // Pi because apparently it's radians
+        swerveDrive.setGyro(new Rotation3d(0.0, 0.0, Math.PI));
+      }
       swerveDrive.zeroGyro();
     });
   }
