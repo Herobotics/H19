@@ -25,8 +25,9 @@ public final class Constants {
     public static final double AREA_FACTOR = 52.0;
     public static final double MIN_DISTANCE = 60.0;
     public static final double MAX_DISTANCE = 150.0;
-    public static final double MIN_ANGLE = -5.0;
-    public static final double MAX_ANGLE = 8.0;
+    public static final double MIN_ANGLE = 0;
+    public static final double MAX_ANGLE = 10;
+    public static final double IDEAL_ANGLE = 4.0;
 
     public static final double K_ALIGN_P = 0.01;
   }
