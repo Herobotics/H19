@@ -8,6 +8,7 @@ import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 
 public class AlignerSubsystem extends SubsystemBase {
+    private boolean detected;
     private double distance;
     private double angle;
     private double area;  // Can never be 0
@@ -16,6 +17,7 @@ public class AlignerSubsystem extends SubsystemBase {
     private static final InterpolatingDoubleTreeMap SHOOTER_MAP = new InterpolatingDoubleTreeMap();
     static {
         SHOOTER_MAP.put(64.0, 60.0);
+        SHOOTER_MAP.put(89.0, 70.0);
         SHOOTER_MAP.put(128.0, 85.0);
         SHOOTER_MAP.put(114.0, 80.0);
         SHOOTER_MAP.put(108.0, 78.0);
@@ -32,6 +34,7 @@ public class AlignerSubsystem extends SubsystemBase {
 
     public void printResults() {
         SmartDashboard.putBoolean("Aligned?", isAligned());
+        SmartDashboard.putBoolean("Detection?", this.detected);
         SmartDashboard.putNumber("Distance From Hub", this.distance);
         SmartDashboard.putNumber("Angle from Hub", this.angle);
         SmartDashboard.putNumber("Area of AprilTag", this.area);
@@ -40,10 +43,12 @@ public class AlignerSubsystem extends SubsystemBase {
 
     public void getAprilTag() {
         this.setEmptyValues();
+        this.detected = false;
         if (LimelightHelpers.getTV(Constants.limelight_name)) {
             this.area = LimelightHelpers.getTA(Constants.limelight_name);
             this.angle = LimelightHelpers.getTX(Constants.limelight_name);
             this.numTargets = LimelightHelpers.getTargetCount(Constants.limelight_name);
+            this.detected = true;
         }
         if (this.area > 0.0) {
             this.distance = Constants.AprilTag.AREA_FACTOR / (Math.sqrt(this.area));
