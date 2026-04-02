@@ -273,7 +273,7 @@ public Command driveFieldOriented(SwerveInputStream driveAngularVelocity) {
 
     // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
     // your limelight 3 feed, tx should return roughly 31 degrees.
-    double targetingAngularVelocity = LimelightHelpers.getTX(Constants.limelight_name) * kP;
+    double targetingAngularVelocity = (LimelightHelpers.getTX(Constants.limelight_name) - Constants.AprilTag.IDEAL_ANGLE) * kP;
 
     // convert to radians per second for our drive method
     targetingAngularVelocity *= maximumAutoSpeed;
