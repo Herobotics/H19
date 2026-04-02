@@ -127,6 +127,7 @@ public class CANFuelSubsystem extends SubsystemBase {
 
   // A method to stop the rollers
   public void stop() {
+    this.setStateRegular(ShooterState.STAHP);
     Indexer.set(0);
     LeftIntakeLauncher.setVoltage(0);
     RightIntakeLauncher.setVoltage(0);
