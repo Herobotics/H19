@@ -65,7 +65,7 @@ public class RobotContainer {
     // register named commands
     NamedCommands.registerCommand("spin up and launch", new LaunchSequence(shooter, LAUNCHING_CENTER_AUTO_RPS));
     NamedCommands.registerCommand("spin up and launch corner", new LaunchSequence(shooter, LAUNCHING_CORNER_RPS));
-    NamedCommands.registerCommand("get out of my way", new Extendo(intake));
+    NamedCommands.registerCommand("get out of my way", new Extendo(intake).withTimeout(2.0));
 
 
     // Build an auto chooser. This will use Commands.none() as the default option.
