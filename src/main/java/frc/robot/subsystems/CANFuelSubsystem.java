@@ -74,9 +74,6 @@ public class CANFuelSubsystem extends SubsystemBase {
   public void setMotorState() {
     double desired_rps = 
             SmartDashboard.getNumber("Launching launcher roller value", this.shooter_rps);
-    if (this.aligner.isAligned()) {
-      desired_rps = this.aligner.getRPS();
-    }
     if (this.state == ShooterState.SHOOT) {
       SmartDashboard.putString("Shooter state", "SHOOT");
       this.setIntakeLauncherRoller(desired_rps);
