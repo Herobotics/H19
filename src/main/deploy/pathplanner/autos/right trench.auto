@@ -13,7 +13,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "out from left trench"
+            "pathName": "move out of right trench"
           }
         },
         {
@@ -25,7 +25,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "get them balls"
+            "pathName": "get them right balls"
           }
         }
       ]
