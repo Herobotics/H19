@@ -14,10 +14,11 @@ import frc.robot.subsystems.CANFuelSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class LaunchSequence extends SequentialCommandGroup {
   /** Creates a new LaunchSequence. */
-  public LaunchSequence(CANFuelSubsystem fuelSubsystem) {
+  public LaunchSequence(CANFuelSubsystem fuelSubsystem, double desired_rps) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+        Commands.runOnce(() -> {fuelSubsystem.setRPS(desired_rps);}),
         new SpinUp(fuelSubsystem).withTimeout(FuelConstants.SPIN_UP_SECONDS),
         new Launch(fuelSubsystem).withTimeout(FuelConstants.SHOOT_AUTO_SECONDS));
   }

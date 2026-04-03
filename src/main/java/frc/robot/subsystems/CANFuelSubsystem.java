@@ -38,6 +38,7 @@ public class CANFuelSubsystem extends SubsystemBase {
   }
 
   private ShooterState state;
+  private double shooter_rps;
 
   private final AlignerSubsystem aligner;
 
@@ -52,6 +53,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     state = ShooterState.STAHP;
 
     this.aligner = aligner;
+    this.shooter_rps = LAUNCHING_TELEOP_RPS;
 
     // // create the configuration for the feeder roller, set a current limit and apply
     // // the config to the controller
@@ -63,7 +65,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     // you to tune the values easily, and then replace the values in Constants.java
     // with your new values. For more information, see the Software Guide.
     SmartDashboard.putNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT);
-    SmartDashboard.putNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS);
+    SmartDashboard.putNumber("Launching launcher roller value", this.shooter_rps);
     SmartDashboard.putString("Shooter state", "INIT");
     SmartDashboard.putNumber("Shooter RPS", -1);
     //SmartDashboard.putNumber("Spin-up feeder roller value", SPIN_UP_FEEDER_VOLTAGE);
@@ -71,7 +73,7 @@ public class CANFuelSubsystem extends SubsystemBase {
 
   public void setMotorState() {
     double desired_rps = 
-            SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_RPS);
+            SmartDashboard.getNumber("Launching launcher roller value", this.shooter_rps);
     if (this.aligner.isAligned()) {
       desired_rps = this.aligner.getRPS();
     }
@@ -101,6 +103,10 @@ public class CANFuelSubsystem extends SubsystemBase {
   // Non-Command version
   public void setStateRegular(ShooterState new_state) {
     this.state = new_state;
+  }
+
+  public void setRPS(double desired_rps) {
+    this.shooter_rps = desired_rps;
   }
 
   public Command toggleState() {

@@ -1,5 +1,8 @@
 package frc.robot;
 
+import static frc.robot.Constants.FuelConstants.LAUNCHING_CENTER_AUTO_RPS;
+import static frc.robot.Constants.FuelConstants.LAUNCHING_CORNER_RPS;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
@@ -38,7 +41,7 @@ public class RobotContainer {
       new CommandXboxController(1); // Port 1
   private final SwerveSubsystem drivebase = new SwerveSubsystem();
   private final AlignerSubsystem aligner = new AlignerSubsystem();
-  private final CANFuelSubsystem shooter = new CANFuelSubsystem(aligner);
+  public final CANFuelSubsystem shooter = new CANFuelSubsystem(aligner);
   private final IntakeSubsystem intake = new IntakeSubsystem();
 
 
@@ -60,7 +63,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // register named commands
-    NamedCommands.registerCommand("spin up and launch", new LaunchSequence(shooter));
+    NamedCommands.registerCommand("spin up and launch", new LaunchSequence(shooter, LAUNCHING_CENTER_AUTO_RPS));
+    NamedCommands.registerCommand("spin up and launch corner", new LaunchSequence(shooter, LAUNCHING_CORNER_RPS));
     NamedCommands.registerCommand("get out of my way", new Extendo(intake));
 
 

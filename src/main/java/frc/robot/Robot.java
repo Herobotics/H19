@@ -88,6 +88,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters teleoperated mode. */
   @Override
   public void teleopInit() {
+    m_robotContainer.shooter.setRPS(Constants.FuelConstants.LAUNCHING_TELEOP_RPS);
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
