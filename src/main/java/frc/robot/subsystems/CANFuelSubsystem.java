@@ -53,7 +53,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     state = ShooterState.STAHP;
 
     this.aligner = aligner;
-    this.shooter_rps = LAUNCHING_TELEOP_RPS;
+    shooter_rps = LAUNCHING_TELEOP_RPS;
 
     // // create the configuration for the feeder roller, set a current limit and apply
     // // the config to the controller
@@ -72,8 +72,9 @@ public class CANFuelSubsystem extends SubsystemBase {
   }
 
   public void setMotorState() {
-    double desired_rps = 
-            SmartDashboard.getNumber("Launching launcher roller value", this.shooter_rps);
+    double desired_rps = this.shooter_rps;
+            // SmartDashboard.getNumber("Launching launcher roller value", this.shooter_rps);
+  SmartDashboard.putNumber("Launching launcher roller value", this.shooter_rps);
     if (this.state == ShooterState.SHOOT) {
       SmartDashboard.putString("Shooter state", "SHOOT");
       this.setIntakeLauncherRoller(desired_rps);
