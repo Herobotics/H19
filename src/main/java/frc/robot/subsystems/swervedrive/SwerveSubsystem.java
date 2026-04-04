@@ -47,7 +47,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private final boolean     useVisionCalibration = false;
   
   // private final double maximumSpeed = Units.feetToMeters(0.5);
-  private final double maximumHumanSpeed = 3.0;
+  private final double maximumHumanSpeed = 4.0;
   private final double maximumAutoSpeed = 2.0;  // could be meters per second or % of max
 
 public SwerveSubsystem(){
